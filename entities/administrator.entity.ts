@@ -12,3 +12,4 @@ export class Administrator {
    passwordHash: string;
 
 }
+
