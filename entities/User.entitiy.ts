@@ -9,43 +9,48 @@ import { Cart } from "./Cart.entitiy";
 
 @Index("uq_user_email", ["email"], { unique: true })
 @Index("uq_user_phone_number", ["phoneNumber"], { unique: true })
-@Entity("user", { schema: "aplikacija" })
+@Entity("user")
 export class User {
   @PrimaryGeneratedColumn({ type: "int", name: "user_id", unsigned: true })
   userId: number;
 
-  @Column("varchar", {
-    name: "email",
+  @Column( {
+    type:"varchar",
     unique: true,
     length: 255,
-    default: () => "'0'",
+    
   })
   email: string;
 
-  @Column("varchar", {
+  @Column( {
+    type:"varchar",
     name: "pssword_hash",
     length: 128,
-    default: () => "'0'",
+    
   })
   psswordHash: string;
 
-  @Column("varchar", { name: "forename", length: 64, default: () => "'0'" })
+  @Column( {
+    type:"varchar",  length: 64 })
   forename: string;
 
-  @Column("varchar", { name: "surname", length: 64, default: () => "'0'" })
+  @Column( {
+    type:"varchar",  length: 64  })
   surname: string;
 
-  @Column("varchar", {
+  @Column( {
+    type:"varchar",
     name: "phone_number",
     unique: true,
     length: 24,
-    default: () => "'0'",
+   
   })
   phoneNumber: string;
 
-  @Column("text", { name: "postal_adress" })
+  @Column( { type:"text",name: "postal_adress" })
   postalAdress: string;
 
+  // jer ovaj nas useer moze da ima vise korpi kojoe su bile otvoreno za njega, tako da cemo pomocu carts mi da dobijemo spisak svih mogućih korpi koji pripadaju tom korisniku 
   @OneToMany(() => Cart, (cart) => cart.user)
   carts: Cart[];
 }

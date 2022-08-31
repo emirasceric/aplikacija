@@ -38,7 +38,8 @@ export class ArticlePrice {
   })
   createdAt: Date;
 
-  // postoji samo jer je relacija dvosmjerna, vjerovatno nikad necemo korisiti, jer cemo iz artikla doci u artikla price
+  // postoji samo jer je relacija dvosmjerna, vjerovatno nikad necemo korisiti, 
+  //jer cemo iz artikla doci u artikla price
   @ManyToOne(() => Article, (article) => article.articlePrices, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",

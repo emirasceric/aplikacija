@@ -7,11 +7,11 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Category } from "./Category";
+import { Category } from "./Category.entity";
 import { ArticleFeature } from "./Article-Feature.entity";
 import { ArticlePrice } from "./Article-Price.entity";
-import { CartArticle } from "./CartArticle";
-import { Photo } from "./Photo";
+import { CartArticle } from "./Cart.Article.entity";
+import { Photo } from "./Photo.entity";
 
 @Index("fk_article_category_id", ["categoryId"], {})
 @Entity("article")

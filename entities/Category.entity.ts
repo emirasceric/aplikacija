@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Article } from "./Article.entitiy";
-import { Feature } from "./Feature";
+import { Feature } from "./Feature.entity";
 
 @Index("fk_category_parent__category_id", ["parentCategoryId"], {})
 @Index("uq_category_image_path", ["imagePath"], { unique: true })
@@ -18,23 +18,24 @@ export class Category {
   @PrimaryGeneratedColumn({ type: "int", name: "category_id", unsigned: true })
   categoryId: number;
 
-  @Column("varchar", {
-    name: "name",
+  @Column( {
+    type:"varchar",
     unique: true,
     length: 32,
-    default: () => "'0'",
+    
   })
   name: string;
 
-  @Column("varchar", {
+  @Column( {
+    type:"varchar",
     name: "image_path",
     unique: true,
     length: 128,
-    default: () => "'0'",
   })
   imagePath: string;
 
-  @Column("int", {
+  @Column({
+    type:"int",
     name: "parent__category_id",
     nullable: true,
     unsigned: true,
@@ -58,4 +59,6 @@ export class Category {
 
   @OneToMany(() => Feature, (feature) => feature.category)
   features: Feature[];
+//za svaku od ovih kategorija mogu da imam vise featursa 
+
 }
